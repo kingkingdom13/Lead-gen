@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DotComHomes buys houses fast in [City/Region]. Get a fair cash offer in 24 hours. No repairs, no fees, no hassle. Call 585-646-IBUY.">
+    <title>DotComHomes.com | We Buy Houses Fast in [City/Region] — Any Condition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark-green: #1a4d2e;
+            --medium-green: #2d6a4f;
+            --light-green: #4caf50;
+            --accent: #52b788;
+            --pale-green: #f0f7f2;
+            --white: #ffffff;
+            --dark: #0d1f14;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: var(--white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 18px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
+        }
+
+        .header.scrolled {
+            background: var(--dark-green);
+            box-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+            padding: 12px 32px;
+        }
+
+        .header-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .header-logo span { color: var(--light-green); }
+
+        .header-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--light-green);
+            color: var(--white);
+            padding: 11px 22px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.88rem;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            white-space: nowrap;
+            letter-spacing: 0.2px;
+        }
+
+        .header-cta:hover {
+            background: #43a047;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(140deg, #09200f 0%, #1a4d2e 45%, #2d6a4f 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 130px 32px 110px;
+        }
+
+        .hero-orb-1 {
+            position: absolute;
+            top: -120px;
+            right: -80px;
+            width: 520px;
+            height: 520px;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.14) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-orb-2 {
+            position: absolute;
+            bottom: 80px;
+            left: -120px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(82, 183, 136, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-wave {
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 90px;
+            overflow: hidden;
+        }
+
+        .hero-wave svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 430px;
+            gap: 64px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(76, 175, 80, 0.15);
+            border: 1px solid rgba(76, 175, 80, 0.35);
+            color: #9de4a0;
+            padding: 7px 16px;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+
+        .hero-badge-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--light-green);
+            border-radius: 50%;
+            animation: blink 2.2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hero-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: clamp(2.1rem, 4.2vw, 3.5rem);
+            line-height: 1.08;
+            color: var(--white);
+            margin-bottom: 22px;
+            letter-spacing: -1.5px;
+        }
+
+        .hero-title .green { color: var(--light-green); }
+
+        .hero-subtitle {
+            font-size: clamp(0.98rem, 1.8vw, 1.1rem);
+            color: rgba(255, 255, 255, 0.72);
+            margin-bottom: 34px;
+            line-height: 1.75;
+            max-width: 510px;
+        }
+
+        .hero-subtitle strong { color: rgba(255, 255, 255, 0.95); }
+
+        .hero-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 38px;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            color: rgba(255, 255, 255, 0.88);
+            padding: 7px 14px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .chip-icon {
+            width: 14px;
+            height: 14px;
+            color: var(--light-green);
+            flex-shrink: 0;
+        }
+
+        .hero-call {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--light-green);
+            color: var(--white);
+            padding: 17px 36px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.08rem;
+            text-decoration: none;
+            transition: transform 0.22s, box-shadow 0.22s;
+            box-shadow: 0 6px 28px rgba(76, 175, 80, 0.45);
+            letter-spacing: 0.2px;
+        }
+
+        .hero-call:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(76, 175, 80, 0.55);
+        }
+
+        /* ===== FORM CARD ===== */
+        .form-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 42px 38px;
+            box-shadow: 0 32px 90px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.04);
+            position: relative;
+        }
+
+        .form-card-bar {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--dark-green), var(--light-green), var(--accent));
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        }
+
+        .form-card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.45rem;
+            color: var(--dark-green);
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
+        }
+
+        .form-card-sub {
+            font-size: 0.88rem;
+            color: var(--muted);
+            margin-bottom: 28px;
+        }
+
+        .form-card-sub strong { color: var(--dark-green); }
+
+        .form-group { margin-bottom: 16px; }
+
+        .form-label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 7px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.98rem;
+            color: var(--text);
+            background: #fafafa;
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .form-input:focus {
+            border-color: var(--light-green);
+            box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.1);
+            background: var(--white);
+        }
+
+        .form-input::placeholder { color: #b0bec5; }
+
+        .form-input.error {
+            border-color: #e53935;
+            box-shadow: 0 0 0 4px rgba(229, 57, 53, 0.08);
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 17px;
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--medium-green) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+            letter-spacing: 0.3px;
+            margin-top: 6px;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(26, 77, 46, 0.38);
+        }
+
+        .form-submit:active { transform: translateY(0); }
+
+        .form-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-disclaimer {
+            font-size: 0.73rem;
+            color: var(--muted);
+            text-align: center;
+            margin-top: 14px;
+            line-height: 1.55;
+        }
+
+        /* Form Success */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 10px 0 4px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .success-icon {
+            width: 74px;
+            height: 74px;
+            background: linear-gradient(135deg, var(--light-green), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 22px;
+            box-shadow: 0 8px 28px rgba(76, 175, 80, 0.35);
+        }
+
+        .success-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.35rem;
+            color: var(--dark-green);
+            margin-bottom: 10px;
+        }
+
+        .success-text {
+            font-size: 0.93rem;
+            color: var(--muted);
+            line-height: 1.65;
+            margin-bottom: 24px;
+        }
+
+        .success-call {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--light-green);
+            color: var(--white);
+            padding: 13px 26px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .success-call:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(76, 175, 80, 0.4);
+        }
+
+        /* ===== SITUATIONS ===== */
+        .situations {
+            background: var(--white);
+            padding: 72px 32px 56px;
+            text-align: center;
+        }
+
+        .situations-inner { max-width: 900px; margin: 0 auto; }
+
+        .section-eyebrow {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            color: var(--light-green);
+            margin-bottom: 14px;
+        }
+
+        .section-heading {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.55rem, 3.2vw, 2.3rem);
+            color: var(--dark-green);
+            letter-spacing: -0.8px;
+            margin-bottom: 12px;
+            line-height: 1.15;
+        }
+
+        .section-sub {
+            font-size: 1rem;
+            color: var(--muted);
+            margin-bottom: 44px;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--pale-green);
+            border: 1.5px solid rgba(76, 175, 80, 0.22);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            color: var(--dark-green);
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+        }
+
+        .pill:hover {
+            background: #ddf0e0;
+            border-color: rgba(76, 175, 80, 0.45);
+            transform: translateY(-1px);
+        }
+
+        .pill svg { color: var(--light-green); flex-shrink: 0; }
+
+        /* ===== FEATURES ===== */
+        .features {
+            background: var(--pale-green);
+            padding: 90px 32px 90px;
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 70px;
+            background: var(--white);
+            clip-path: ellipse(55% 100% at 50% 0%);
+        }
+
+        .features::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 70px;
+            background: var(--white);
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+
+        .section-inner { max-width: 1120px; margin: 0 auto; }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 38px 32px 34px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--dark-green), var(--light-green));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.35s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover::after { transform: scaleX(1); }
+
+        .feature-icon-wrap {
+            width: 62px;
+            height: 62px;
+            background: linear-gradient(135deg, var(--dark-green), var(--medium-green));
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 26px;
+        }
+
+        .feature-icon-wrap svg { color: var(--white); }
+
+        .feature-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.18rem;
+            color: var(--dark-green);
+            margin-bottom: 12px;
+            letter-spacing: -0.4px;
+        }
+
+        .feature-text {
+            font-size: 0.93rem;
+            color: var(--muted);
+            line-height: 1.72;
+            margin-bottom: 18px;
+        }
+
+        .feature-callout {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 700;
+            font-size: 0.87rem;
+            color: var(--dark-green);
+            padding: 8px 14px;
+            background: var(--pale-green);
+            border-radius: 8px;
+        }
+
+        .feature-callout svg { color: var(--light-green); }
+
+        /* ===== HOW IT WORKS ===== */
+        .how {
+            background: var(--white);
+            padding: 96px 32px;
+        }
+
+        .steps-wrap {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+            position: relative;
+        }
+
+        .steps-connector {
+            position: absolute;
+            top: 40px;
+            left: calc(16.66% + 24px);
+            right: calc(16.66% + 24px);
+            height: 2px;
+            background: linear-gradient(90deg, var(--light-green), var(--accent), var(--light-green));
+            opacity: 0.4;
+            z-index: 0;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-num {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--dark-green), var(--medium-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 26px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.9rem;
+            color: var(--white);
+            box-shadow: 0 8px 28px rgba(26, 77, 46, 0.32);
+            position: relative;
+        }
+
+        .step-num::before {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            border: 2px dashed rgba(76, 175, 80, 0.28);
+        }
+
+        .step-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--dark-green);
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+        }
+
+        .step-text {
+            font-size: 0.93rem;
+            color: var(--muted);
+            line-height: 1.72;
+        }
+
+        /* ===== CTA BAND ===== */
+        .cta-band {
+            background: linear-gradient(140deg, #09200f 0%, var(--dark-green) 50%, #2d6a4f 100%);
+            padding: 80px 32px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.1) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .cta-band-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: clamp(1.65rem, 3.5vw, 2.6rem);
+            color: var(--white);
+            letter-spacing: -1px;
+            margin-bottom: 14px;
+            position: relative;
+        }
+
+        .cta-band-sub {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.68);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .btn-green {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--light-green);
+            color: var(--white);
+            padding: 17px 38px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.05rem;
+            text-decoration: none;
+            transition: transform 0.22s, box-shadow 0.22s;
+            box-shadow: 0 6px 24px rgba(76, 175, 80, 0.42);
+        }
+
+        .btn-green:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(76, 175, 80, 0.55);
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: var(--white);
+            padding: 17px 38px;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.28);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            transition: background 0.22s, border-color 0.22s;
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #090f0b;
+            padding: 52px 32px 36px;
+        }
+
+        .footer-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.65rem;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .footer-logo span { color: var(--light-green); }
+
+        .footer-phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--light-green);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-phone:hover { color: #81c784; }
+
+        .footer-rule {
+            width: 56px;
+            height: 2px;
+            background: rgba(76, 175, 80, 0.3);
+            border-radius: 2px;
+        }
+
+        .footer-disclaimer {
+            font-size: 0.76rem;
+            color: rgba(255, 255, 255, 0.3);
+            max-width: 580px;
+            line-height: 1.65;
+        }
+
+        .footer-copy {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.28);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 960px) {
+            .hero { padding: 110px 24px 110px; }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 44px;
+                max-width: 600px;
+            }
+
+            .hero-title { letter-spacing: -1px; }
+
+            .hero-wave { height: 60px; }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .steps-wrap {
+                grid-template-columns: 1fr;
+                max-width: 440px;
+                margin: 0 auto;
+                gap: 36px;
+            }
+
+            .steps-connector { display: none; }
+        }
+
+        @media (max-width: 640px) {
+            .header { padding: 14px 20px; }
+            .header.scrolled { padding: 10px 20px; }
+            .header-logo { font-size: 1.15rem; }
+            .header-cta { padding: 9px 14px; font-size: 0.78rem; }
+
+            .hero { padding: 100px 20px 90px; }
+
+            .hero-call { width: 100%; justify-content: center; }
+
+            .form-card { padding: 30px 22px; }
+
+            .situations { padding: 56px 20px 44px; }
+            .features { padding: 80px 20px; }
+            .how { padding: 72px 20px; }
+            .cta-band { padding: 64px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+         HEADER
+    ============================================================ -->
+    <header class="header" id="mainHeader">
+        <a href="#" class="header-logo">DotCom<span>Homes</span>.com</a>
+        <a href="tel:5856464289" class="header-cta">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12.5a19.79 19.79 0 0 1-3-8.63A2 2 0 0 1 3.88 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            585-646-IBUY
+        </a>
+    </header>
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section class="hero" id="home">
+        <div class="hero-orb-1"></div>
+        <div class="hero-orb-2"></div>
+
+        <div class="hero-inner">
+            <!-- Left: Content -->
+            <div>
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    Now Buying in [City/Region] &amp; Surrounding Areas
+                </div>
+
+                <h1 class="hero-title">
+                    We Buy Houses Fast<br>
+                    in <span class="green">[City/Region]</span><br>
+                    — Any Condition.<br>Any Situation.
+                </h1>
+
+                <p class="hero-subtitle">
+                    Behind on payments? Going through a divorce or dealing with an inherited property? We make it simple — get a <strong>fair all-cash offer</strong> with zero repairs, zero fees, and zero hassle. Close in as little as 7 days.
+                </p>
+
+                <div class="hero-chips">
+                    <div class="chip">
+                        <svg class="chip-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Close in 7–14 Days
+                    </div>
+                    <div class="chip">
+                        <svg class="chip-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        No Repairs Needed
+                    </div>
+                    <div class="chip">
+                        <svg class="chip-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Zero Commissions or Fees
+                    </div>
+                    <div class="chip">
+                        <svg class="chip-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        No Obligation Offer
+                    </div>
+                </div>
+
+                <a href="tel:5856464289" class="hero-call">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12.5a19.79 19.79 0 0 1-3-8.63A2 2 0 0 1 3.88 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    Call Now: 585-646-IBUY
+                </a>
+            </div>
+
+            <!-- Right: Form Card -->
+            <div class="form-card" id="offerForm">
+                <div class="form-card-bar"></div>
+
+                <h2 class="form-card-title">Get Your Free Cash Offer</h2>
+                <p class="form-card-sub">No obligation. We respond <strong>within 24 hours.</strong></p>
+
+                <form id="leadForm" novalidate>
+                    <div class="form-group">
+                        <label class="form-label" for="fname">Your Full Name</label>
+                        <input class="form-input" type="text" id="fname" name="name" placeholder="John Smith" autocomplete="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="fphone">Phone Number</label>
+                        <input class="form-input" type="tel" id="fphone" name="phone" placeholder="(585) 000-0000" autocomplete="tel" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="faddress">Property Address</label>
+                        <input class="form-input" type="text" id="faddress" name="address" placeholder="123 Main St, [City], NY" autocomplete="street-address" required>
+                    </div>
+                    <button type="submit" class="form-submit" id="formBtn">
+                        Get My Cash Offer &rarr;
+                    </button>
+                </form>
+
+                <div class="form-success" id="formSuccess">
+                    <div class="success-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <div class="success-title">You're All Set!</div>
+                    <p class="success-text">
+                        Thank you! A member of our team will reach out within <strong>24 hours</strong> to talk about your property. For a faster response, call us directly — we'd love to help.
+                    </p>
+                    <a href="tel:5856464289" class="success-call">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12.5a19.79 19.79 0 0 1-3-8.63A2 2 0 0 1 3.88 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        Call 585-646-IBUY Now
+                    </a>
+                </div>
+
+                <p class="form-disclaimer">&#128274; 100% private &amp; confidential. We never share your information.</p>
+            </div>
+        </div>
+
+        <div class="hero-wave">
+            <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,60 C240,100 480,20 720,50 C960,80 1200,10 1440,60 L1440,90 L0,90 Z" fill="#ffffff"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         WHO WE HELP
+    ============================================================ -->
+    <section class="situations">
+        <div class="situations-inner">
+            <div class="section-eyebrow">We Help Homeowners In All Situations</div>
+            <h2 class="section-heading">Whatever You're Going Through<br>— We Can Help</h2>
+            <p class="section-sub">No judgment. No pressure. Just a fair, straightforward cash offer so you can move forward on your terms.</p>
+            <div class="pills">
+                <div class="pill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Facing Foreclosure
+                </div>
+                <div class="pill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Inherited Property
+                </div>
+                <div class="pill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Going Through Divorce
+                </div>
+                <div class="pill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Behind on Payments
+                </div>
+                <div class="pill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Probate / Estate Sale
+                </div>
+                <div class="pill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Relocation or Job Change
+                </div>
+                <div class="pill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Tired Landlord
+                </div>
+                <div class="pill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Major Repairs Needed
+                </div>
+                <div class="pill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Tax Liens or Back Taxes
+                </div>
+                <div class="pill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Vacant or Abandoned Property
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FEATURES / SELLING POINTS
+    ============================================================ -->
+    <section class="features" id="benefits">
+        <div class="section-inner">
+            <div class="section-eyebrow" style="text-align:center;">Why Sellers Choose Us</div>
+            <h2 class="section-heading" style="text-align:center;">Sell Without the Stress</h2>
+            <p class="section-sub" style="text-align:center; margin-bottom: 56px;">No agents. No showings. No months of waiting. Just a clean, simple sale on your timeline.</p>
+
+            <div class="features-grid">
+
+                <!-- Card 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3 class="feature-title">Fast Cash Close</h3>
+                    <p class="feature-text">We're not agents waiting on mortgage approvals. We're direct cash buyers — which means we can close in as little as 7 days, or on whatever date works best for you.</p>
+                    <div class="feature-callout">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Close in as little as 7 days
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <h3 class="feature-title">We Buy As-Is</h3>
+                    <p class="feature-text">Don't spend a single dollar fixing up your property. Leaky roof, outdated kitchen, foundation issues — it doesn't matter. We buy your home in its exact current condition.</p>
+                    <div class="feature-callout">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        We handle every repair ourselves
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <h3 class="feature-title">Zero Fees or Commissions</h3>
+                    <p class="feature-text">You pay absolutely nothing. No agent commissions (typically 5–6%), no closing costs, no hidden fees. The number in your offer is the number you walk away with — period.</p>
+                    <div class="feature-callout">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        You keep 100% of the offer
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         HOW IT WORKS
+    ============================================================ -->
+    <section class="how" id="how-it-works">
+        <div class="section-inner">
+            <div class="section-eyebrow" style="text-align:center;">Simple 3-Step Process</div>
+            <h2 class="section-heading" style="text-align:center;">How It Works</h2>
+            <p class="section-sub" style="text-align:center; margin-bottom: 60px;">We've stripped away every unnecessary step. Here's all it takes to sell your home.</p>
+
+            <div class="steps-wrap">
+                <div class="steps-connector"></div>
+
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <h3 class="step-title">Submit Your Info</h3>
+                    <p class="step-text">Fill out the short form on this page or call us directly at <strong>585-646-IBUY</strong>. Tell us a little about your property — it takes less than 60 seconds.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <h3 class="step-title">Get a Fair Cash Offer</h3>
+                    <p class="step-text">Within 24 hours we'll review your property and present you with a straightforward, no-obligation cash offer. No lowballing. No pressure. Just a fair number.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h3 class="step-title">Pick Your Closing Date</h3>
+                    <p class="step-text">Accept the offer and choose a closing date that fits your life. We handle all the paperwork. You get cash in hand and move on stress-free.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CTA BAND
+    ============================================================ -->
+    <section class="cta-band">
+        <div class="cta-glow"></div>
+        <h2 class="cta-band-title">Ready to Get Your Fair Cash Offer?</h2>
+        <p class="cta-band-sub">It costs nothing and takes less than a minute. No pressure. No obligation. Ever.</p>
+        <div class="cta-actions">
+            <a href="#offerForm" class="btn-green" id="ctaScrollBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                Get My Free Offer
+            </a>
+            <a href="tel:5856464289" class="btn-ghost">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12.5a19.79 19.79 0 0 1-3-8.63A2 2 0 0 1 3.88 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Call 585-646-IBUY
+            </a>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FOOTER
+    ============================================================ -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <a href="#" class="footer-logo">DotCom<span>Homes</span>.com</a>
+
+            <a href="tel:5856464289" class="footer-phone">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12.5a19.79 19.79 0 0 1-3-8.63A2 2 0 0 1 3.88 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                585-646-IBUY
+            </a>
+
+            <div class="footer-rule"></div>
+
+            <p class="footer-disclaimer">
+                DotComHomes.com is a real estate investment company. We are not real estate agents or brokers. We purchase properties directly from homeowners in [City/Region] and surrounding areas.
+            </p>
+
+            <p class="footer-copy">&copy; 2025 DotComHomes.com &middot; All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+         JAVASCRIPT
+    ============================================================ -->
+    <script>
+        // Sticky header
+        const header = document.getElementById('mainHeader');
+        const onScroll = () => {
+            header.classList.toggle('scrolled', window.scrollY > 60);
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        // Phone input auto-format
+        const phoneInput = document.getElementById('fphone');
+        phoneInput.addEventListener('input', function () {
+            const digits = this.value.replace(/\D/g, '').slice(0, 10);
+            let formatted = digits;
+            if (digits.length >= 7) {
+                formatted = '(' + digits.slice(0, 3) + ') ' + digits.slice(3, 6) + '-' + digits.slice(6);
+            } else if (digits.length >= 4) {
+                formatted = '(' + digits.slice(0, 3) + ') ' + digits.slice(3);
+            } else if (digits.length >= 1) {
+                formatted = '(' + digits;
+            }
+            this.value = formatted;
+        });
+
+        // Form submission
+        const form       = document.getElementById('leadForm');
+        const successDiv = document.getElementById('formSuccess');
+        const submitBtn  = document.getElementById('formBtn');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Basic validation highlight
+            let valid = true;
+            ['fname', 'fphone', 'faddress'].forEach(id => {
+                const el = document.getElementById(id);
+                if (!el.value.trim()) {
+                    el.classList.add('error');
+                    valid = false;
+                } else {
+                    el.classList.remove('error');
+                }
+            });
+            if (!valid) return;
+
+            // Simulate async submission
+            submitBtn.textContent = 'Sending…';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                form.style.display = 'none';
+                successDiv.style.display = 'block';
+                document.getElementById('offerForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 900);
+        });
+
+        // Remove error class on input
+        ['fname', 'fphone', 'faddress'].forEach(id => {
+            document.getElementById(id).addEventListener('input', function () {
+                this.classList.remove('error');
+            });
+        });
+
+        // Smooth scroll CTA → form
+        document.getElementById('ctaScrollBtn').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('offerForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => document.getElementById('fname').focus(), 650);
+        });
+    </script>
+</body>
+</html>
