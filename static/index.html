@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Asset Sprint</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0b0b10;
+      color: #dde1f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 20px 80px;
+    }
+
+    /* ── Header ── */
+    header { text-align: center; margin-bottom: 40px; }
+    header h1 {
+      font-size: 2.1rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #818cf8, #a78bfa, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p { color: #64748b; margin-top: 8px; font-size: 0.95rem; }
+
+    /* ── Card ── */
+    .card {
+      background: #13131c;
+      border: 1px solid #23233a;
+      border-radius: 18px;
+      padding: 32px;
+      width: 100%;
+      max-width: 660px;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.4);
+    }
+
+    /* ── Input row ── */
+    .input-row { display: flex; gap: 10px; }
+    .input-row input {
+      flex: 1;
+      background: #0b0b10;
+      border: 1px solid #2e2e48;
+      border-radius: 10px;
+      padding: 13px 16px;
+      color: #dde1f0;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .input-row input::placeholder { color: #3a3a58; }
+    .input-row input:focus { border-color: #818cf8; }
+    .input-row button {
+      background: linear-gradient(135deg, #818cf8, #a78bfa);
+      border: none;
+      border-radius: 10px;
+      padding: 13px 22px;
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .input-row button:hover:not(:disabled) { opacity: 0.88; }
+    .input-row button:active:not(:disabled) { transform: scale(0.97); }
+    .input-row button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* ── Divider ── */
+    .divider { height: 1px; background: #1e1e30; margin: 24px 0; }
+
+    /* ── Steps ── */
+    #progress { display: none; }
+    #progress.visible { display: block; }
+    .section-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #3d3d60;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 0;
+      border-bottom: 1px solid #16162a;
+    }
+    .step:last-child { border-bottom: none; }
+
+    .step-dot {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      background: #16162a;
+      color: #3a3a58;
+      transition: background 0.3s, color 0.3s;
+    }
+    .step-dot.active {
+      background: #1e1e4a;
+      color: #818cf8;
+      animation: pulse 1.4s ease-in-out infinite;
+    }
+    .step-dot.done { background: #0d2e1e; color: #34d399; }
+
+    .step-label {
+      font-size: 0.88rem;
+      color: #3d3d60;
+      transition: color 0.3s;
+    }
+    .step-label.active { color: #dde1f0; }
+    .step-label.done { color: #64748b; }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(129,140,248,0.4); }
+      50%       { box-shadow: 0 0 0 6px rgba(129,140,248,0); }
+    }
+
+    /* ── Downloads ── */
+    #downloads { display: none; margin-top: 24px; }
+    #downloads.visible { display: block; }
+    .downloads-header {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #34d399;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dl-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #0f0f1c;
+      border: 1px solid #23233a;
+      border-radius: 11px;
+      padding: 14px 16px;
+      color: #dde1f0;
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .dl-btn:last-child { margin-bottom: 0; }
+    .dl-btn:hover { border-color: #818cf8; background: #16162e; }
+    .dl-btn .dl-icon { font-size: 1.15rem; }
+    .dl-btn .dl-label { flex: 1; font-size: 0.9rem; }
+    .dl-btn .dl-badge {
+      font-size: 0.7rem;
+      background: #1e1e4a;
+      color: #818cf8;
+      border-radius: 5px;
+      padding: 3px 8px;
+      font-weight: 600;
+    }
+
+    /* ── Error ── */
+    #error-box {
+      display: none;
+      background: #1e0d0d;
+      border: 1px solid #7f1d1d;
+      border-radius: 10px;
+      padding: 14px 16px;
+      color: #fca5a5;
+      font-size: 0.88rem;
+      margin-top: 20px;
+    }
+    #error-box.visible { display: block; }
+
+    /* ── Phase badges ── */
+    .phase-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 4px;
+      padding: 2px 6px;
+      margin-right: 6px;
+    }
+    .phase-1 { background: #1a1a40; color: #818cf8; }
+    .phase-2 { background: #1a2a1a; color: #34d399; }
+    .phase-3 { background: #2a1a2a; color: #c084fc; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>AI Asset Sprint</h1>
+    <p>Type a niche keyword — get a complete sellable digital product in minutes</p>
+  </header>
+
+  <div class="card">
+    <div class="input-row">
+      <input
+        id="keyword"
+        type="text"
+        placeholder='e.g. "fix and flip real estate"'
+        onkeydown="if(event.key==='Enter') generate()"
+      />
+      <button id="btn" onclick="generate()">Generate ✦</button>
+    </div>
+
+    <div id="progress">
+      <div class="divider"></div>
+      <div class="section-label">Pipeline Progress</div>
+      <div id="step-list"></div>
+    </div>
+
+    <div id="downloads">
+      <div class="divider"></div>
+      <div class="downloads-header">✅ Your digital product is ready!</div>
+      <a id="ebook-link" class="dl-btn" href="#" download>
+        <span class="dl-icon">📘</span>
+        <span class="dl-label">Solution eBook</span>
+        <span class="dl-badge">DOCX</span>
+      </a>
+      <a id="value-link" class="dl-btn" href="#" download>
+        <span class="dl-icon">🎁</span>
+        <span class="dl-label">Value Enhancer — Bonuses + OTO + Workbook</span>
+        <span class="dl-badge">DOCX</span>
+      </a>
+    </div>
+
+    <div id="error-box"></div>
+  </div>
+
+  <script>
+    const STEPS = [
+      { phase: 1, label: "Researching pain points" },
+      { phase: 1, label: "Generating solutions" },
+      { phase: 1, label: "Crafting $100M offer" },
+      { phase: 2, label: "Creating ebook title" },
+      { phase: 2, label: "Building ebook outline" },
+      { phase: 2, label: "Generating cover image" },
+      { phase: 2, label: "Writing full ebook" },
+      { phase: 3, label: "Creating value enhancer package" },
+      { phase: 3, label: "Building ebook DOCX" },
+      { phase: 3, label: "Building value enhancer DOCX" },
+    ];
+
+    const PHASE_NAMES = { 1: "phase-1", 2: "phase-2", 3: "phase-3" };
+    const PHASE_LABELS = { 1: "Phase 1", 2: "Phase 2", 3: "Phase 3" };
+
+    function renderSteps(activeIdx) {
+      document.getElementById("step-list").innerHTML = STEPS.map((s, i) => {
+        const isDone   = i < activeIdx;
+        const isActive = i === activeIdx;
+        const dotClass  = isDone ? "step-dot done" : isActive ? "step-dot active" : "step-dot";
+        const lblClass  = isDone ? "step-label done" : isActive ? "step-label active" : "step-label";
+        const icon = isDone ? "✓" : String(i + 1);
+        return `
+          <div class="step">
+            <div class="${dotClass}">${icon}</div>
+            <div class="${lblClass}">
+              <span class="phase-badge ${PHASE_NAMES[s.phase]}">${PHASE_LABELS[s.phase]}</span>
+              ${s.label}
+            </div>
+          </div>`;
+      }).join("");
+    }
+
+    function showError(msg) {
+      const box = document.getElementById("error-box");
+      box.textContent = "❌ " + msg;
+      box.classList.add("visible");
+      document.getElementById("btn").disabled = false;
+    }
+
+    function showDownloads(ebookUrl, valueUrl) {
+      document.getElementById("ebook-link").href = ebookUrl;
+      document.getElementById("value-link").href = valueUrl;
+      renderSteps(STEPS.length); // all done
+      document.getElementById("downloads").classList.add("visible");
+      document.getElementById("btn").disabled = false;
+      document.getElementById("btn").textContent = "Generate ✦";
+    }
+
+    async function generate() {
+      const keyword = document.getElementById("keyword").value.trim();
+      if (!keyword) return;
+
+      // Reset UI
+      document.getElementById("btn").disabled = true;
+      document.getElementById("btn").textContent = "Running…";
+      document.getElementById("progress").classList.add("visible");
+      document.getElementById("downloads").classList.remove("visible");
+      document.getElementById("error-box").classList.remove("visible");
+      renderSteps(0);
+
+      let response;
+      try {
+        response = await fetch("/generate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ keyword }),
+        });
+      } catch (e) {
+        showError("Network error — is the server running?");
+        return;
+      }
+
+      if (!response.ok) {
+        const err = await response.json().catch(() => ({}));
+        showError(err.error || `HTTP ${response.status}`);
+        return;
+      }
+
+      const reader  = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+
+        const parts = buffer.split("\n\n");
+        buffer = parts.pop();
+
+        for (const part of parts) {
+          const line = part.split("\n").find(l => l.startsWith("data: "));
+          if (!line) continue;
+          let payload;
+          try { payload = JSON.parse(line.slice(6)); } catch { continue; }
+
+          if (payload.event === "step") {
+            renderSteps(payload.step);
+          } else if (payload.event === "done") {
+            showDownloads(payload.ebook_url, payload.value_url);
+          } else if (payload.event === "error") {
+            showError(payload.message);
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>
