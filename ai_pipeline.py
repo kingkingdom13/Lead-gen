@@ -67,9 +67,11 @@ class AIPipeline:
             "Modern minimalist layout. Portrait orientation."
         )
         resp = self.client.images.generate(
-            model="gpt-image-1",
+            model="dall-e-3",
             prompt=prompt,
-            size="1024x1536",
+            size="1024x1792",
+            quality="standard",
+            response_format="b64_json",
             n=1,
         )
         b64 = resp.data[0].b64_json
