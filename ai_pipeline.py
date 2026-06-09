@@ -1,3 +1,4 @@
+import base64
 import json
 import os
 
@@ -67,16 +68,19 @@ class AIPipeline:
             "Modern minimalist layout. Portrait orientation."
         )
         resp = self.client.images.generate(
-            model="dall-e-3",
+            model="gpt-image-1",
             prompt=prompt,
-            size="1024x1792",
-            quality="standard",
+            size="1024x1536",
             n=1,
         )
-        image_url = resp.data[0].url
+        img = resp.data[0]
+        if img.b64_json:
+            image_bytes = base64.b64decode(img.b64_json)
+        else:
+            image_bytes = http_requests.get(img.url, timeout=60).content
         cover_path = os.path.join(output_dir, f"cover_{session_id}.png")
         with open(cover_path, "wb") as f:
-            f.write(http_requests.get(image_url, timeout=60).content)
+            f.write(image_bytes)
         return cover_path
 
     def write_ebook(self, title: str, keyword: str, outline: str) -> str:
