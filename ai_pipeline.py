@@ -1,7 +1,7 @@
-import base64
 import json
 import os
 
+import requests as http_requests
 from openai import OpenAI
 
 
@@ -71,13 +71,12 @@ class AIPipeline:
             prompt=prompt,
             size="1024x1792",
             quality="standard",
-            response_format="b64_json",
             n=1,
         )
-        b64 = resp.data[0].b64_json
+        image_url = resp.data[0].url
         cover_path = os.path.join(output_dir, f"cover_{session_id}.png")
         with open(cover_path, "wb") as f:
-            f.write(base64.b64decode(b64))
+            f.write(http_requests.get(image_url, timeout=60).content)
         return cover_path
 
     def write_ebook(self, title: str, keyword: str, outline: str) -> str:
