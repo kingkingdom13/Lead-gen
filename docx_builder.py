@@ -1,5 +1,6 @@
 import os
 import re
+from io import BytesIO
 
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -7,15 +8,15 @@ from docx.shared import Inches, Pt
 
 
 def build_ebook_docx(
-    title: str, content: str, cover_path: str, output_path: str
+    title: str, content: str, cover_bytes: bytes | None, output_path: str
 ) -> None:
     doc = Document()
     _setup_page(doc)
 
-    if cover_path and os.path.isfile(cover_path):
+    if cover_bytes:
         p = doc.add_paragraph()
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        p.add_run().add_picture(cover_path, width=Inches(6))
+        p.add_run().add_picture(BytesIO(cover_bytes), width=Inches(6))
         doc.add_page_break()
 
     title_p = doc.add_paragraph()

@@ -54,7 +54,7 @@ def generate():
                 outline = pipeline.build_outline(title, keyword)
 
                 event_queue.put(("step", {"step": 5, "message": "Generating cover image..."}))
-                cover_path = pipeline.generate_cover(title, keyword, session_id, OUTPUT_DIR)
+                cover_bytes = pipeline.generate_cover(title, keyword)
 
                 event_queue.put(("step", {"step": 6, "message": "Writing full ebook..."}))
                 ebook_content = pipeline.write_ebook(title, keyword, outline)
@@ -64,7 +64,7 @@ def generate():
 
                 event_queue.put(("step", {"step": 8, "message": "Building ebook DOCX..."}))
                 ebook_file = f"ebook_{session_id}.docx"
-                build_ebook_docx(title, ebook_content, cover_path, os.path.join(OUTPUT_DIR, ebook_file))
+                build_ebook_docx(title, ebook_content, cover_bytes, os.path.join(OUTPUT_DIR, ebook_file))
 
                 event_queue.put(("step", {"step": 9, "message": "Building value enhancer DOCX..."}))
                 value_file = f"value_enhancer_{session_id}.docx"

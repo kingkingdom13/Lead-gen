@@ -56,9 +56,7 @@ class AIPipeline:
             f'We\'re writing an ebook titled "{title}".\n\nCreate a detailed outline:\n1. Introduction — hook readers with the core promise and explain why this matters for the {keyword} niche\n2. Section 1–6 — bold benefit-driven headings, 3–5 bullet sub-topics each\n3. Conclusion & 3-Step Action Plan\n\nReturn as a numbered list with sub-bullets.',
         )
 
-    def generate_cover(
-        self, title: str, keyword: str, session_id: str, output_dir: str
-    ) -> str:
+    def generate_cover(self, title: str, keyword: str) -> bytes:
         prompt = (
             f'Award-winning ebook cover for "{title}", targeting people interested in "{keyword}". '
             "Central figure representing the primary demographic. "
@@ -75,13 +73,8 @@ class AIPipeline:
         )
         img = resp.data[0]
         if img.b64_json:
-            image_bytes = base64.b64decode(img.b64_json)
-        else:
-            image_bytes = http_requests.get(img.url, timeout=60).content
-        cover_path = os.path.join(output_dir, f"cover_{session_id}.png")
-        with open(cover_path, "wb") as f:
-            f.write(image_bytes)
-        return cover_path
+            return base64.b64decode(img.b64_json)
+        return http_requests.get(img.url, timeout=60).content
 
     def write_ebook(self, title: str, keyword: str, outline: str) -> str:
         return self._chat(
